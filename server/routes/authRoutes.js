@@ -1,8 +1,8 @@
 import express from "express";
-import dotenv from "dotenv";
 import axios from "axios";
 import querystring from "querystring";
 import randomstring from "randomstring";
+import dotenv from "dotenv";
 
 dotenv.config();
 const router = express.Router();
@@ -10,10 +10,6 @@ const router = express.Router();
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirectUri = "http://localhost:3000/callback";
-
-router.get("/", (req, res) => {
-  res.send("Welcome to homepage");
-});
 
 //Request authorization to access data
 router.get("/login", (req, res) => {
@@ -69,34 +65,6 @@ router.get("/callback", async (req, res) => {
       console.error("Error:", error.message);
       res.status(500).send("Internal Server Error");
     }
-  }
-});
-
-//Get MOM info from spotify
-//01rN7IQbgfwlpj6rMPOIyB?si=xBaPlAz9ToaKBTsp9pYFcA
-router.get("/artists/:artistId", async (req, res) => {
-  const token = process.env.SPOTIFY_ACCESS_TOKEN || null;
-  const artistId = req.params.artistId;
-  console.log(token);
-
-  if (token === null) {
-    return res.status(401).send("Unathorized access token");
-  }
-
-  try {
-    const artistInfo = await axios.get(
-      `https://api.spotify.com/v1/artists/${artistId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    //Handle response
-    res.json(artistInfo.data);
-  } catch (error) {
-    res.status(400).send("Error " + error.message);
   }
 });
 
