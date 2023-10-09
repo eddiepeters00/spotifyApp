@@ -1,8 +1,8 @@
 import express from "express";
+import dotenv from "dotenv";
 import axios from "axios";
 import querystring from "querystring";
-import randomstring from "randomstring";
-import dotenv from "dotenv";
+import randomString from "../assets/randomstring.js";
 
 dotenv.config();
 const router = express.Router();
@@ -13,7 +13,7 @@ const redirectUri = "http://localhost:3000/callback";
 
 //Request authorization to access data
 router.get("/login", (req, res) => {
-  const state = randomstring.generate(16);
+  const state = randomString(16);
   const scope = "user-read-private user-read-email";
 
   res.redirect(
