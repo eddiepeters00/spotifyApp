@@ -14,7 +14,7 @@ const redirectUri = "http://localhost:3000/callback";
 //Request authorization to access data
 router.get("/login", (req, res) => {
   const state = randomString(16);
-  const scope = "user-read-private user-read-email";
+  const scope = "user-read-private user-read-email playlist-read-private";
 
   res.redirect(
     "https://accounts.spotify.com/authorize?" +
