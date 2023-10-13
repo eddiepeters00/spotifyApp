@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.playlist-box{
+    position: relative;
+    text-align: center;
+    font-size: 2rem;
+    background-color: black;
+    margin: 1rem;
+}
+
+.playlist-box img{
+    max-width: 100%;
+    aspect-ratio: 1;
+    opacity: 70%;
+}
+
+.playlist-box div {
+    pointer-events: none;
+    position: absolute;   
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
