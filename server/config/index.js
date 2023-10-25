@@ -1,0 +1,23 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+const NODE_PORT = process.env.NODE_PORT;
+const NODE_HOSTNAME = process.env.NODE_HOSTNAME;
+
+const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
+const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
+const SPOTIFY_REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
+const SPOTIFY_SCOPE = process.env.SPOTIFY_SCOPE;
+const SPOTIFY_ACCESS_TOKEN = process.env.SPOTIFY_ACCESS_TOKEN;
+const SPOTIFY_REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
+
+export default Object.freeze({
+  NODE_PORT,
+  NODE_HOSTNAME,
+  SPOTIFY_CLIENT_ID,
+  SPOTIFY_CLIENT_SECRET,
+  SPOTIFY_REDIRECT_URI,
+  SPOTIFY_SCOPE,
+  SPOTIFY_ACCESS_TOKEN,
+  SPOTIFY_REFRESH_TOKEN,
+});

@@ -3,7 +3,9 @@ import axios from "axios";
 //Get the users spotifyID
 async function getUserData(req, res) {
   const token = process.env.SPOTIFY_ACCESS_TOKEN;
-  if (token === null) throw new Error("Unathorized token");
+  if (token == null) {
+    return res.status(401).json({ error: "Unauthorized token" });
+  }
 
   const userInfo = await axios.get("https://api.spotify.com/v1/me", {
     headers: {
@@ -30,4 +32,17 @@ const getUserPlayLists = async (req, res) => {
   return userPlayLists.data;
 };
 
-export default getUserPlayLists;
+const getSelectedPlayList = async (req, res, playListId) => {
+  await getUserData(req, res);
+  const selectedPlayList = await axios.get(
+    `https://api.spotify.com/v1/playlists/${playListId}`,
+    {
+      headers: {
+        Authorization: `Bearer ${req.token}`,
+      },
+    }
+  );
+  return selectedPlayList.data;
+};
+
+export { getUserPlayLists, getSelectedPlayList };
