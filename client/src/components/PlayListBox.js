@@ -5,12 +5,15 @@ const PlayListBox = ({ name, images, id, onPlaylistClick }) => {
   };
 
   return (
-    <div className="playlist-box" onClick={handleClick}>
-      <img src={images[0].url} alt="Playlist"></img>
+    <section className="playlist-box">
       <div>
-        <h3>{name}</h3>
+        <img src={images[0].url} alt="Playlist"></img>
+        <p>{name}</p>
       </div>
-    </div>
+      <div>
+        <button>SORT</button>
+      </div>
+    </section>
   );
 };
 

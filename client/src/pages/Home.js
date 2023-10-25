@@ -51,19 +51,23 @@ function Home() {
       {user === null ? (
         <p>Loading user...</p>
       ) : (
-        <p>Welcome {user.display_name}</p>
+        <section className="user-container">
+          <p>Welcome {user.display_name}</p>
+        </section>
       )}
-      <h2>Playlists</h2>
       {playLists !== null ? (
-        <section className="playlists-container">
-          {playLists.map((playlist, i) => (
-            <PlayListBox
-              key={i}
-              name={playlist.name}
-              images={playlist.images}
-              id={playlist.id}
-            />
-          ))}
+        <section className="playlist-container">
+          <h3>Playlists</h3>
+          <div>
+            {playLists.map((playlist, i) => (
+              <PlayListBox
+                key={i}
+                name={playlist.name}
+                images={playlist.images}
+                id={playlist.id}
+              />
+            ))}
+          </div>
         </section>
       ) : (
         <p>Loading playlists...</p>

@@ -1,5 +1,0 @@
-{
-	"ext": "js json",
-	"watch": [".js", ".json"],
-    "exec": "node ./index.js"
-}
