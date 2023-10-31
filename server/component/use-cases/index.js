@@ -6,6 +6,7 @@ import createAuth from "./auth.js";
 import createSpotifyCallback from "./spotify_callback.js";
 import createGetUserData from "./getUserData.js";
 import createGetUserPlayLists from "./getUserPlaylists.js";
+import createGetSelectedPlayList from "./getSelectedPlayList.js";
 
 const clientId = config.SPOTIFY_CLIENT_ID;
 const clientSecret = config.SPOTIFY_CLIENT_SECRET;
@@ -42,4 +43,17 @@ const getUserPlayLists = (accessToken, userId) => {
   );
 };
 
-export { authSpotify, spotifyCallback, getUserData, getUserPlayLists };
+const getSelectedPlayList = (accessToken, playListId) => {
+  return createGetSelectedPlayList({ axios }).getSelectedPlayList({
+    accessToken,
+    playListId,
+  });
+};
+
+export {
+  authSpotify,
+  spotifyCallback,
+  getUserData,
+  getUserPlayLists,
+  getSelectedPlayList,
+};

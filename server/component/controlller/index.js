@@ -3,6 +3,7 @@ import {
   spotifyCallback,
   getUserData,
   getUserPlayLists,
+  getSelectedPlayList,
 } from "../use-cases/index.js";
 
 const baseUrl = "/api";
@@ -60,6 +61,24 @@ const getUserPlayListsEP = async (req, res) => {
   }
 };
 
+const getSelectedPlayListEP = async (req, res) => {
+  try {
+    if (req.session && req.params["id"]) {
+      console.log(
+        `Session: ${req.session.accessToken}, Param: ${req.params["id"]}`
+      );
+      const selectedPlayList = await getSelectedPlayList(
+        req.session.accessToken,
+        req.params["id"]
+      );
+
+      res.json({ playlist: selectedPlayList });
+    }
+  } catch (err) {
+    res.json({ error: err });
+  }
+};
+
 const routes = [
   { path: `${baseUrl}/auth`, method: "get", component: authSpotifyEP },
   { path: `${baseUrl}/callback`, method: "get", component: spotifyCallbackEP },
@@ -68,6 +87,11 @@ const routes = [
     path: `${baseUrl}/user/playlists`,
     method: "get",
     component: getUserPlayListsEP,
+  },
+  {
+    path: `${baseUrl}/user/playlists/:id`,
+    method: "get",
+    component: getSelectedPlayListEP,
   },
 ];
 

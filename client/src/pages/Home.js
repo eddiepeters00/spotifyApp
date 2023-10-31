@@ -8,7 +8,6 @@ function Home() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Fetch user data
         const response = await fetch("http://localhost:3000/api/user", {
           method: "GET",
           credentials: "include",
@@ -16,7 +15,6 @@ function Home() {
         const userData = await response.json();
         setUser(userData.data);
 
-        // Now that user data is available, fetch playlists
         fetchPlayLists();
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -33,7 +31,6 @@ function Home() {
           }
         );
         const data = await response.json();
-        console.log(data);
         setPlayLists(data.playlists);
       } catch (error) {
         console.error("Error fetching playlists:", error);
@@ -52,7 +49,10 @@ function Home() {
         <p>Loading user...</p>
       ) : (
         <section className="user-container">
-          <p>Welcome {user.display_name}</p>
+          <p>
+            <b>Signed in as: </b>
+            {user.display_name}
+          </p>
         </section>
       )}
       {playLists !== null ? (
