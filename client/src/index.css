@@ -87,3 +87,41 @@ body {
     width: 100%;
     padding: .4rem;
 }
+
+.playlist-view {
+    margin: 1rem;
+    border-radius: var(--radius);
+    background: linear-gradient(to bottom, var(--accent), var(--background-elevated) 25%);
+}
+
+.playlist-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .playlist-info img {
+    max-width: 25%;
+    min-width: 4rem;
+    aspect-ratio: 1;
+}
+
+.playlist-info div {
+    padding: 1rem;
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+}
+
+.track-list-container {
+    margin: 1rem;
+}
+
+.track-list-container ul {
+    list-style: none;
+}
+
+.track-list-container ul li {
+    margin-block: 1rem;
+}

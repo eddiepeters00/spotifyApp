@@ -1,12 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import "../index.css";
 
 const PlayListBox = ({ name, images, id }) => {
-  const handleClick = () => {
-    //Navigate to selectedPlayListView and fetch all tracks
-    //Display sort/filter UI
+  const navigate = useNavigate();
 
-    console.log(`Name: ${name}, id: ${id}`);
-    window.location.href = `http://localhost:3001/selected/${id}`;
+  const handleClick = () => {
+    navigate(`/selected/${id}`, { state: { name, images } });
   };
 
   return (
