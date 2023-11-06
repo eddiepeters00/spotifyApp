@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import "../index.css";
 
 const PlayListBox = ({ name, images, id }) => {
   const navigate = useNavigate();

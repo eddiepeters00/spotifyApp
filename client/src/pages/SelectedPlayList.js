@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import PlayListButtonsField from "../components/PlayListButtonsField";
 
 const SelectedPlayList = () => {
   const { id } = useParams();
@@ -20,10 +21,6 @@ const SelectedPlayList = () => {
     return <p>Error</p>;
   }
 
-  // data.playlist.items.forEach((track) => {
-  //   console.log(track.track.id);
-  // });
-
   return (
     <section className="playlist-view">
       <section className="playlist-info">
@@ -36,7 +33,7 @@ const SelectedPlayList = () => {
           <p>Loading...</p>
         )}
       </section>
-      <div>sort buttons</div>
+      <PlayListButtonsField tracks={data.playlist.items} />
       <section className="track-list-container">
         <ul>
           {data.playlist.items.map((track, i) => (
