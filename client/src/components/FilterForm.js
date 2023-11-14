@@ -41,6 +41,13 @@ const FilterForm = ({ tracks, callback }) => {
       );
     }
 
+    console.log(filteredTracks);
+    if (filters.album) {
+      filteredTracks = filteredTracks.filter(
+        (track) => track.track.album.name === filters.album
+      );
+    }
+
     if (filters.min_duration && filters.max_duration) {
       filteredTracks = filteredTracks.filter(
         (track) =>
@@ -105,7 +112,7 @@ const FilterForm = ({ tracks, callback }) => {
       </div>
 
       <div className="toggle-wrapper">
-        <label className="toggle" htmlfor="toggle-explicit">
+        <label className="toggle" htmlFor="toggle-explicit">
           Explicit only:
           <input
             id="toggle-explicit"

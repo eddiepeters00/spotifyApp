@@ -50,7 +50,7 @@ const SelectedPlayList = () => {
                 <li key={i}>
                   <img
                     src={track.track.album.images[0].url}
-                    alt="album image"
+                    alt="album cover"
                   ></img>
                   <div>
                     <p>{track.track.name}</p>
@@ -62,7 +62,7 @@ const SelectedPlayList = () => {
                 <li key={i}>
                   <img
                     src={track.track.album.images[0].url}
-                    alt="album image"
+                    alt="album cover"
                   ></img>
                   <div>
                     <p>{track.track.name}</p>

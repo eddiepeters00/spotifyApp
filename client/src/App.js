@@ -8,15 +8,13 @@ import "./index.css";
 function App() {
   return (
     <>
-      <main>
-        <Router>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<Home />}></Route>
-            <Route path="/selected/:id" element={<SelectedPlayList />}></Route>
-          </Routes>
-        </Router>
-      </main>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />}></Route>
+          <Route path="/selected/:id" element={<SelectedPlayList />}></Route>
+        </Routes>
+      </Router>
     </>
   );
 }

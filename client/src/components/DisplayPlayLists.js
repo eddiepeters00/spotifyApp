@@ -18,8 +18,7 @@ const DisplayPlayLists = () => {
 
   return (
     <>
-      <section className="container">
-        <h3>Playlists</h3>
+      <section className="playlist-container">
         <div>
           {playLists.playlists.map((playlist, i) => (
             <PlayListBox

@@ -16,11 +16,12 @@ const DisplayUser = () => {
   }
 
   return (
-    <section className="container">
+    <section className="user-container">
       <p>
         <b>Signed in as: </b>
         {user.data.display_name}
       </p>
+      <a href="/">Sign out</a>
     </section>
   );
 };

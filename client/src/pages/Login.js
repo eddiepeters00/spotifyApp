@@ -4,11 +4,15 @@ const Login = () => {
   };
 
   return (
-    <>
-      <h1>Welcome</h1>
-      <p>Press button to sign in to spotify</p>
-      <button onClick={handleSpotifyLogin}>Login with Spotify</button>
-    </>
+    <main>
+      <section className="hero">
+        <h1>PlaylistRefine</h1>
+        <h2>Filtering your spotify playlists has never been easier.</h2>
+        <button className="sign-in-button" onClick={handleSpotifyLogin}>
+          Sign in
+        </button>
+      </section>
+    </main>
   );
 };
 
