@@ -1,16 +1,19 @@
-/*TODO:
-//Fetch artists and bpm
-//map artists genres
-filter on genres and bpm
-*/
+import { useState } from "react";
 
-const FilterForm = ({ tracks }) => {
-  //Get all the unique artists from the tracks
+const FilterForm = ({ tracks, callback }) => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleClick = () => setIsChecked(!isChecked);
+
+  //Creates an array of unique artists
   const getUniqueArtists = () => [
     ...new Set(tracks.map((track) => track.track.artists[0].name)),
   ];
 
-  const getUniqueGenres = () => [];
+  //Creates an array of unique album names
+  const getUniqueAlbum = () => [
+    ...new Set(tracks.map((track) => track.track.album.name)),
+  ];
 
   //Get the selected filters from the form
   const handleSubmit = (e) => {
@@ -22,7 +25,10 @@ const FilterForm = ({ tracks }) => {
       }
     }
 
-    filterTracks(inputObj);
+    const filteredTracks = filterTracks(inputObj);
+
+    //Send data back to SelectedPlayList component
+    callback(filteredTracks);
   };
 
   //Filter tracks with inputs from the form
@@ -43,44 +49,73 @@ const FilterForm = ({ tracks }) => {
       );
     }
 
-    console.log(filteredTracks);
+    if (filters.explicit === "true") {
+      filteredTracks = filteredTracks.filter(
+        (track) => Boolean(filters.explicit) === track.track.explicit
+      );
+    }
+
+    return filteredTracks;
   };
 
   return (
     <form className="filter-form" onSubmit={handleSubmit}>
       <div>
-        <label>Genre:</label>
-        <select name="genre" id="genre-select">
-          {getUniqueGenres().map((genre, index) => (
-            <option key={index} value={genre}>
-              {genre}
-            </option>
-          ))}
-        </select>
+        <label htmlFor="artist-select">Artist:</label>
+        <div className="input-wrapper">
+          <select name="artist" id="artist-select">
+            <option></option>
+            {getUniqueArtists().map((artist, index) => (
+              <option key={index} value={artist}>
+                {artist}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div>
-        <label>Artist:</label>
-        <select name="artist" id="artist-select">
-          <option></option>
-          {getUniqueArtists().map((artist, index) => (
-            <option key={index} value={artist}>
-              {artist}
-            </option>
-          ))}
-        </select>
+        <label htmlFor="album-select">Album:</label>
+        <div className="input-wrapper">
+          <select name="album" id="album-select">
+            <option></option>
+            {getUniqueAlbum().map((name, index) => (
+              <option key={index} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div>
         <label>Duration</label>
-        <input name="min_duration" type="number"></input>
-        <input name="max_duration" type="number"></input>
+        <div className="input-wrapper">
+          <input
+            placeholder="1 (minutes)"
+            name="min_duration"
+            type="number"
+          ></input>
+          <input
+            placeholder="5 (minutes)"
+            name="max_duration"
+            type="number"
+          ></input>
+        </div>
       </div>
 
-      <div>
-        <label>BPM:</label>
-        <input name="min_bpm" type="number"></input>
-        <input name="max_bpm" type="number"></input>
+      <div className="toggle-wrapper">
+        <label className="toggle" htmlfor="toggle-explicit">
+          Explicit only:
+          <input
+            id="toggle-explicit"
+            onClick={handleClick}
+            name="explicit"
+            type="checkbox"
+            value={isChecked}
+          ></input>
+          <div className="toggle-fill"></div>
+        </label>
       </div>
 
       <button>Filter</button>

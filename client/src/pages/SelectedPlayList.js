@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import PlayListButtonsField from "../components/PlayListButtonsField";
 
 const SelectedPlayList = () => {
+  const [filteredPlaylist, setFilteredPlaylist] = useState(null);
   const { id } = useParams();
   const { state } = useLocation();
   const url = "http://localhost:3000/api/user/playlists/";
@@ -21,6 +22,11 @@ const SelectedPlayList = () => {
     return <p>Error</p>;
   }
 
+  //Get filtered tracks from FilterForm
+  const getFilteredPlayList = (filteredTracks) => {
+    setFilteredPlaylist(filteredTracks);
+  };
+
   return (
     <section className="playlist-view">
       <section className="playlist-info">
@@ -33,12 +39,37 @@ const SelectedPlayList = () => {
           <p>Loading...</p>
         )}
       </section>
-      <PlayListButtonsField tracks={data.playlist.items} />
+      <PlayListButtonsField
+        callback={getFilteredPlayList}
+        tracks={data.playlist.items}
+      />
       <section className="track-list-container">
         <ul>
-          {data.playlist.items.map((track, i) => (
-            <li key={i}>{track.track.name}</li>
-          ))}
+          {filteredPlaylist
+            ? filteredPlaylist.map((track, i) => (
+                <li key={i}>
+                  <img
+                    src={track.track.album.images[0].url}
+                    alt="album image"
+                  ></img>
+                  <div>
+                    <p>{track.track.name}</p>
+                    <p>{track.track.artists[0].name}</p>
+                  </div>
+                </li>
+              ))
+            : data.playlist.items.map((track, i) => (
+                <li key={i}>
+                  <img
+                    src={track.track.album.images[0].url}
+                    alt="album image"
+                  ></img>
+                  <div>
+                    <p>{track.track.name}</p>
+                    <p>{track.track.artists[0].name}</p>
+                  </div>
+                </li>
+              ))}
         </ul>
       </section>
     </section>

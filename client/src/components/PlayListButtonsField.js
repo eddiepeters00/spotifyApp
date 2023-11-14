@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FilterForm from "./FilterForm";
 
-const PlayListButtonsField = ({ tracks }) => {
+const PlayListButtonsField = ({ tracks, callback }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleClick = () => {
@@ -15,7 +15,7 @@ const PlayListButtonsField = ({ tracks }) => {
         <button onClick={handleClick}>Filter playlist</button>
       </div>
       <div className={`filter-dropdown ${isDropdownOpen ? "open" : "closed"}`}>
-        <FilterForm tracks={tracks} />
+        <FilterForm callback={callback} tracks={tracks} />
       </div>
     </>
   );
