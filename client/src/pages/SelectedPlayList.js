@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import PlayListButtonsField from "../components/PlayListButtonsField";
+import createNewPlayList from "../libs/createNewPlayList";
 
 const SelectedPlayList = () => {
   const [filteredPlaylist, setFilteredPlaylist] = useState(null);
+  const [newPlayList, setNewPlayList] = useState(null);
   const { id } = useParams();
   const { state } = useLocation();
   const url = "http://localhost:3000/api/user/playlists/";
@@ -14,18 +16,25 @@ const SelectedPlayList = () => {
     credentials: "include",
   });
 
-  if (isPending) {
-    return <p>Loading...</p>;
-  }
+  if (isPending) return <p>Loading...</p>;
 
-  if (error) {
-    return <p>Error</p>;
-  }
+  if (error) return <p>Error</p>;
 
   //Get filtered tracks from FilterForm
   const getFilteredPlayList = (filteredTracks) => {
     setFilteredPlaylist(filteredTracks);
   };
+
+  const getNewPlaylistData = (newPlaylistData) => {
+    setNewPlayList(newPlaylistData);
+  };
+
+  //Create new playlist with filtered tracks
+  if (newPlayList && filteredPlaylist) {
+    console.log(newPlayList);
+    console.log(filteredPlaylist);
+    createNewPlayList(newPlayList, filteredPlaylist);
+  }
 
   return (
     <section className="playlist-view">
@@ -40,7 +49,8 @@ const SelectedPlayList = () => {
         )}
       </section>
       <PlayListButtonsField
-        callback={getFilteredPlayList}
+        filterCB={getFilteredPlayList}
+        playlistCB={getNewPlaylistData}
         tracks={data.playlist.items}
       />
       <section className="track-list-container">

@@ -7,6 +7,7 @@ import createSpotifyCallback from "./spotify_callback.js";
 import createGetUserData from "./getUserData.js";
 import createGetUserPlayLists from "./getUserPlaylists.js";
 import createGetSelectedPlayList from "./getSelectedPlayList.js";
+import createNewPlayList from "./newPlayList.js";
 
 const clientId = config.SPOTIFY_CLIENT_ID;
 const clientSecret = config.SPOTIFY_CLIENT_SECRET;
@@ -50,10 +51,17 @@ const getSelectedPlayList = (accessToken, playListId) => {
   });
 };
 
+const newPlayList = (accessToken) => {
+  return createNewPlayList({}).newPlayList({
+    accessToken,
+  });
+};
+
 export {
   authSpotify,
   spotifyCallback,
   getUserData,
   getUserPlayLists,
   getSelectedPlayList,
+  newPlayList,
 };

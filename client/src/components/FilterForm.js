@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const FilterForm = ({ tracks, callback }) => {
+const FilterForm = ({ tracks, filterCB }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleClick = () => setIsChecked(!isChecked);
@@ -28,7 +28,7 @@ const FilterForm = ({ tracks, callback }) => {
     const filteredTracks = filterTracks(inputObj);
 
     //Send data back to SelectedPlayList component
-    callback(filteredTracks);
+    filterCB(filteredTracks);
   };
 
   //Filter tracks with inputs from the form
@@ -67,6 +67,7 @@ const FilterForm = ({ tracks, callback }) => {
 
   return (
     <form className="filter-form" onSubmit={handleSubmit}>
+      <p>Filter the playlist based on the options below.</p>
       <div>
         <label htmlFor="artist-select">Artist:</label>
         <div className="input-wrapper">
