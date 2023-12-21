@@ -1,6 +1,6 @@
 # spotifyApp
 
-A node.js project using express to handle requests to the Spotify web API
+Fullstack application using Node.js with express to handle requests to the Spotify web API and React for the frontend.
 
 
 ## WORK IN PROGRESS
