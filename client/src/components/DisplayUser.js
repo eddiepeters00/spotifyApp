@@ -1,11 +1,9 @@
 import useFetch from "../hooks/useFetch";
 
 const DisplayUser = () => {
-  const {
-    data: user,
-    isPending,
-    error,
-  } = useFetch("http://localhost:3000/api/user");
+  const { data: user, isPending, error } = useFetch(
+    "http://localhost:3004/api/user"
+  );
 
   if (isPending) return <p>Loading...</p>;
 

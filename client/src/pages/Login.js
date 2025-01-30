@@ -1,6 +1,6 @@
 const Login = () => {
   const handleSpotifyLogin = () => {
-    window.location.href = "http://localhost:3000/api/auth";
+    window.location.href = "http://localhost:3004/api/auth";
   };
 
   return (

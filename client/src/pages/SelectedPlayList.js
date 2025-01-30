@@ -9,7 +9,7 @@ const SelectedPlayList = () => {
   const [newPlayList, setNewPlayList] = useState(null);
   const { id } = useParams();
   const { state } = useLocation();
-  const url = "http://localhost:3000/api/user/playlists/";
+  const url = "http://localhost:3004/api/user/playlists/";
 
   const { data, isPending, error } = useFetch(url + id, {
     method: "GET",
