@@ -13,7 +13,7 @@ export default function createServer({
     app.use(helmet());
 
     const corsOptions = {
-      origin: "http://localhost:3001", //Client
+      origin: "http://localhost:3000", //Client
       credentials: true,
     };
 

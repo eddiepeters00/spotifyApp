@@ -25,7 +25,7 @@ const spotifyCallbackEP = async (req, res) => {
   try {
     const tokenResponse = await spotifyCallback(code, state);
     req.session.accessToken = tokenResponse.data.access_token;
-    res.redirect("http://localhost:3001/home");
+    res.redirect("http://localhost:3000/home");
   } catch (error) {
     res.status(403).json({ data: error.message });
   }
