@@ -1,5 +1,5 @@
 import axios from "axios";
-import querystring from "querystring";
+import querystring from "query-string";
 import config from "../../config/index.js";
 import generateRandomString from "../../helpers/randomstring.js";
 import createAuth from "./auth.js";

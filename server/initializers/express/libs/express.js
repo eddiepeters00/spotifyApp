@@ -13,8 +13,8 @@ export default function createServer({
     app.use(helmet());
 
     const corsOptions = {
-      origin: "http://localhost:3001", // Replace with the URL of your React client
-      credentials: true, // This enables passing cookies and sessions in CORS requests
+      origin: "http://localhost:3001", //Client
+      credentials: true,
     };
 
     app.use(cors(corsOptions));
@@ -28,7 +28,7 @@ export default function createServer({
         resave: false,
         saveUninitialized: true,
         cookie: {
-          secure: false, // Set this to false if you're not using HTTPS
+          secure: false,
         },
       })
     );
